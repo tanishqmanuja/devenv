@@ -1,4 +1,6 @@
-- name: Install Programs 1 (python3-pip, python3-venv)
+---
+
+- name: Install Packages 1 (python3-pip, python3-venv)
   become: true
   apt:
     name:
@@ -11,10 +13,11 @@
     - neovim
     - nvim
 
-- name: Install programs 2 (tmux)
+- name: Install Packages 2 (zsh, tmux)
   become: true
   apt:
     name:
+      - zsh
       - tmux
     state: present
   tags:
