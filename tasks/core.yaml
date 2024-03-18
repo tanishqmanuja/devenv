@@ -1,0 +1,22 @@
+- name: Install Programs 1 (python3-pip, python3-venv)
+  become: true
+  apt:
+    name:
+      - python3-pip
+      - python3-venv
+    state: present
+  tags:
+    - install
+    - core
+    - neovim
+    - nvim
+
+- name: Install programs 2 (tmux)
+  become: true
+  apt:
+    name:
+      - tmux
+    state: present
+  tags:
+    - install
+    - core

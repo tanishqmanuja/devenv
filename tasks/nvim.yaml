@@ -1,0 +1,36 @@
+- name: Install build dependencies
+  become: true
+  apt:
+    name:
+      - build-essential
+      - ninja-build
+      - gettext
+      - libtool
+      - libtool-bin
+      - autoconf
+      - automake
+      - cmake
+      - g++
+      - lua5.1
+      - pkg-config
+      - unzip
+    state: present
+  tags: &tags_for_nvim_task
+    - install
+    - neovim
+    - nvim
+
+- name: Clone Neovim repository
+  git:
+    repo: https://github.com/neovim/neovim
+    dest: "{{ lookup('env', 'HOME') }}/neovim"
+  tags: *tags_for_nvim_task
+
+- name: Build Neovim
+  shell: "cd {{ lookup('env', 'HOME') }}/neovim && make CMAKE_BUILD_TYPE=Release"
+  tags: *tags_for_nvim_task
+
+- name: Install Neovim
+  become: true
+  shell: "cd {{ lookup('env', 'HOME') }}/neovim && make install"
+  tags: *tags_for_nvim_task

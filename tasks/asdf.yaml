@@ -1,0 +1,21 @@
+- name: Clone asdf
+  git:
+    repo: https://github.com/asdf-vm/asdf.git
+    dest: "{{ lookup('env', 'HOME') }}/.asdf"
+  tags: &tags_for_asdf_task
+    - install
+    - dotfiles
+    - asdf
+
+- name: Source asdf
+  shell: source $HOME/.asdf/asdf.sh
+  tags: *tags_for_asdf_task
+
+- name: Install asdf plugins (nodejs. golang, python)
+  shell: asdf plugin add {{ item }} && asdf install {{ item }} latest && asdf global {{ item }} $(asdf latest {{ item }})
+  with_items:
+    - nodejs
+    - golang
+    - python
+  tags: *tags_for_asdf_task
+
