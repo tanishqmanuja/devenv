@@ -1,25 +1,49 @@
-- name: Install prerequisites
-  package:
+---
+
+- name: Install prerequisites (asdf)
+  apt:
     name:
       - curl
       - git
     state: present
+  tags: &tags_for_asdf_task
+    - install
+    - core
+    - asdf
 
 - name: Clone asdf
   git:
     repo: https://github.com/asdf-vm/asdf.git
     dest: "{{ lookup('env', 'HOME') }}/.asdf"
-  tags: &tags_for_asdf_task
-    - install
-    - dotfiles
-    - asdf
+  tags: *tags_for_asdf_task
 
-- name: Source asdf
-  shell: source $HOME/.asdf/asdf.sh
+- name: Install prerequisites (asdf-python)
+  apt:
+    name:
+      - make
+      - build-essential
+      - libssl-dev
+      - zlib1g-dev
+      - libbz2-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - wget
+      - curl
+      - llvm
+      - libncursesw5-dev
+      - xz-utils
+      - tk-dev
+      - libxml2-dev
+      - libxmlsec1-dev
+      - libffi-dev
+      - liblzma-dev
+    state: present
   tags: *tags_for_asdf_task
 
 - name: Install asdf plugins (nodejs. golang, python)
-  shell: asdf plugin add {{ item }} && asdf install {{ item }} latest && asdf global {{ item }} $(asdf latest {{ item }})
+  shell: source {{ lookup('env', 'HOME') }}/.asdf/asdf.sh && asdf plugin add {{ item }} && asdf install {{ item }} latest && asdf global {{ item }} $(asdf latest {{ item }})
+  args:
+    executable: /bin/bash
   with_items:
     - nodejs
     - golang
