@@ -1,5 +1,11 @@
 # Development Environment
 
+## Fresh Setup
+
+```sh
+ansible-playbook -t core,dotfiles --vault-password-file ~/vault.key local.yaml
+```
+
 ### Encrypt .ssh files
 
 ```sh
