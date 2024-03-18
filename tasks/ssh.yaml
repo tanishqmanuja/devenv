@@ -12,7 +12,7 @@
 
 - name: Install ssh keys
   copy:
-    src: .ssh
+    src: .ssh/
     dest: "{{ lookup('env', 'HOME') }}/.ssh"
     mode: 0600
   tags: *tags_for_ssh_task

@@ -15,6 +15,7 @@
     dest: "{{ lookup('env', 'HOME') }}/.dotfiles"
     recursive: yes
     update: yes
+    accept_hostkey: yes
     version: main
   tags: *tags_for_dotfiles_task
 
