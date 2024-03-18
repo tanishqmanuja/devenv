@@ -1,6 +1,21 @@
 ---
 
-- name: Install Packages 1 (python3-pip, python3-venv)
+- name: Install Packages 1 (curl, unzip, cmake, build-essential)
+  become: true
+  apt:
+    name:
+      - curl
+      - unzip
+      - cmake
+      - build-essential
+    state: present
+  tags:
+    - install
+    - core
+    - neovim
+    - nvim
+
+- name: Install Packages 2 (python3-pip, python3-venv)
   become: true
   apt:
     name:
@@ -13,13 +28,25 @@
     - neovim
     - nvim
 
-- name: Install Packages 2 (zsh, tmux)
+- name: Install Packages 3 (zsh, tmux, fzf, exa, bat, ripgrep)
   become: true
   apt:
     name:
       - zsh
       - tmux
+      - fzf
+      - exa
+      - bat
+      - ripgrep
     state: present
   tags:
     - install
     - core
+
+- name: Install zoxide
+  become: true
+  shell: curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+  tags:
+    - install
+    - core
+
