@@ -1,5 +1,7 @@
 # Development Environment
 
+- OS: Ubuntu
+
 ## Fresh Setup
 
 ```sh
