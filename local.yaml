@@ -1,0 +1,14 @@
+- hosts: localhost
+
+  pre_tasks:
+  - name: Update apt cache
+    become: true
+    apt: 
+      update_cache: yes
+    tags:
+      - install
+      - core
+
+  tasks:
+    - include: tasks/ssh.yaml
+    - include: tasks/dotfiles.yaml
