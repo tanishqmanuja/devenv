@@ -49,3 +49,14 @@
     - install
     - core
 
+- name: Install exa
+  become: true
+  apt:
+    name:
+      - exa
+    state: present
+  when: ansible_distribution_version | float >= 20.10
+  tags:
+    - install
+    - core
+
