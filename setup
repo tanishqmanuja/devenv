@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+## Install ansible
+sudo apt-add-repository -y ppa:ansible/ansible
+sudo apt-get update -y
+sudo apt-get install -y curl git software-properties-common ansible
+
+# Check if vault.key exists
+if [ ! -f ~/vault.key ]; then
+  echo "Error: vault.key file not found! Ansible vault password is required."
+  exit 1
+fi
+
+## Run ansible
+ansible-playbook -t core,dotfiles --ask-become-pass --vault-password-file ~/vault.key local.yaml
