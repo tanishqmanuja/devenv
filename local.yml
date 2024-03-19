@@ -1,4 +1,5 @@
-- hosts: local
+- hosts: localhost
+  connection: local
 
   pre_tasks:
   - name: Update apt cache

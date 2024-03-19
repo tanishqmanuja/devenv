@@ -1,6 +1,7 @@
 ---
 
 - name: Install prerequisites (asdf)
+  become: true
   apt:
     name:
       - curl
@@ -18,6 +19,7 @@
   tags: *tags_for_asdf_task
 
 - name: Install prerequisites (asdf-python)
+  become: true
   apt:
     name:
       - make
