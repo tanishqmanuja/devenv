@@ -8,6 +8,12 @@ Ansible playbook to setup my WSL2 bases Ubuntu workspace.
 curl -fsSL "https://raw.githubusercontent.com/tanishqmanuja/devenv/main/bootstrap" | bash 
 ```
 
+### Bootstrap (with tags)
+
+```sh
+curl -fsSL "https://raw.githubusercontent.com/tanishqmanuja/devenv/main/bootstrap" | bash -s -- nvim
+```
+
 ### Run Playbook
 
 ```sh
