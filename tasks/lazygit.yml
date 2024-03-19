@@ -18,15 +18,16 @@
   tags: *tags_for_lazygit_task
 
 - name: Download lazygit tarball
-  command: curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_{{ lazygit_version.stdout }}_Linux_x86_64.tar.gz"
-  args:
-    chdir: /tmp
+  get_url:
+    url: "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_{{ lazygit_version.stdout }}_Linux_x86_64.tar.gz"
+    dest: /tmp/lazygit.tar.gz
   tags: *tags_for_lazygit_task
 
-- name: Extract lazygit tarball
-  command: tar xf lazygit.tar.gz lazygit
-  args:
-    chdir: /tmp
+- name: Extract lazygit archive
+  unarchive:
+    src: /tmp/lazygit.tar.gz
+    dest: /tmp
+    extra_opts: ['--strip', '1']
   tags: *tags_for_lazygit_task
 
 - name: Install lazygit
@@ -34,4 +35,10 @@
   command: sudo install lazygit /usr/local/bin
   args:
     chdir: /tmp
+  tags: *tags_for_lazygit_task
+
+- name: Clean up
+  file:
+    path: /tmp/lazygit.tar.gz
+    state: absent
   tags: *tags_for_lazygit_task
