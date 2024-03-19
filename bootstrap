@@ -1,9 +1,18 @@
 #!/usr/bin/env bash
 
-## Install ansible
-sudo apt-add-repository -y ppa:ansible/ansible
-sudo apt-get update -y
-sudo apt-get install -y curl git software-properties-common ansible
+set -e
+
+tags="$1"
+
+if [ -z $tags ]; then
+  tags="all"
+fi
+
+## Install ansible if not already installed
+if ! [ -x "$(command -v ansible)" ]; then
+  sudo apt-get install -y ansible
+fi
+
 
 # Check if vault.key exists
 if [ ! -f ~/vault.key ]; then
