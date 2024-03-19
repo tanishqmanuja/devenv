@@ -21,4 +21,5 @@ if [ ! -f ~/vault.key ]; then
 fi
 
 ## Run ansible
-ansible-playbook -t core,dotfiles --ask-become-pass --vault-password-file ~/vault.key local.yaml
+# ansible-playbook -t core,dotfiles --ask-become-pass --vault-password-file ~/vault.key local.yaml
+ansible-pull -U https://github.com/tanishqmanuja/devenv.git -t core,dotfiles --ask-become-pass --vault-password-file ~/vault.key
