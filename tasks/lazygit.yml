@@ -23,18 +23,13 @@
     dest: /tmp/lazygit.tar.gz
   tags: *tags_for_lazygit_task
 
-- name: Extract lazygit archive
-  unarchive:
-    src: /tmp/lazygit.tar.gz
-    dest: /tmp
-    extra_opts: ['--strip', '1']
+- name: Extract lazygit tarball
+  shell: "tar xf /tmp/lazygit.tar.gz -C /tmp lazygit"
   tags: *tags_for_lazygit_task
 
 - name: Install lazygit
   become: true
-  command: sudo install lazygit /usr/local/bin
-  args:
-    chdir: /tmp
+  shell: "sudo install /tmp/lazygit /usr/local/bin"
   tags: *tags_for_lazygit_task
 
 - name: Clean up
