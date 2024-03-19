@@ -1,3 +1,5 @@
+---
+
 - name: Install zsh
   become: true
   apt:
@@ -9,6 +11,6 @@
     - zsh
 
 - name: Change shell to zsh
-  command: usermod --shell /bin/zsh {{ ansible_env.USER }}
   become: true
+  command: usermod --shell /bin/zsh {{ ansible_env.USER }}
   tags: *tags_for_zsh_task

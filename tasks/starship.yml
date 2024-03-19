@@ -1,3 +1,5 @@
+---
+
 - name: Get starship install script
   ansible.builtin.get_url:
     url: https://starship.rs/install.sh
