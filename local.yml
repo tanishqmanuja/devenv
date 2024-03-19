@@ -13,6 +13,8 @@
     - import_tasks: tasks/ssh.yaml
     - import_tasks: tasks/git.yaml
     - import_tasks: tasks/core.yaml
+    - import_tasks: tasks/zsh.yaml
+    - import_tasks: tasks/tmux.yaml
     - import_tasks: tasks/asdf.yaml
     - import_tasks: tasks/starship.yaml
     - import_tasks: tasks/dotfiles.yaml

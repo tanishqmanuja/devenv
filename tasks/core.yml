@@ -28,12 +28,10 @@
     - neovim
     - nvim
 
-- name: Install Packages 3 (zsh, tmux, fzf, bat, ripgrep)
+- name: Install Packages 3 (fzf, bat, ripgrep)
   become: true
   apt:
     name:
-      - zsh
-      - tmux
       - fzf
       - bat
       - ripgrep

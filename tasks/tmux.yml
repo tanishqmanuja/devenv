@@ -1,0 +1,16 @@
+- name: Install tmux
+  become: true
+  apt:
+    name: tmux
+    state: present
+  tags: &tags_for_tmux_task
+    - install
+    - core
+    - tmux
+
+- name: Install tmux plugin manager
+  become: true
+  git:
+    repo: https://github.com/tmux-plugins/tpm
+    dest: "{{ lookup('env', 'HOME') }}/.tmux/plugins/tpm"
+  tags: *tags_for_tmux_task
