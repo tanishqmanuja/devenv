@@ -1,0 +1,37 @@
+---
+
+- name: Install prerequisites (lazygit)
+  become: true
+  apt:
+    name:
+      - curl
+      - jq
+    state: present
+  tags: &tags_for_lazygit_task
+    - install
+    - core
+    - lazygit
+
+- name: Get latest lazygit version
+  shell: "curl -s 'https://api.github.com/repos/jesseduffield/lazygit/releases/latest' | jq -r '.tag_name'"
+  register: lazygit_version
+  tags: *tags_for_lazygit_task
+
+- name: Download lazygit tarball
+  command: curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_{{ lazygit_version.stdout }}_Linux_x86_64.tar.gz"
+  args:
+    chdir: /tmp
+  tags: *tags_for_lazygit_task
+
+- name: Extract lazygit tarball
+  command: tar xf lazygit.tar.gz lazygit
+  args:
+    chdir: /tmp
+  tags: *tags_for_lazygit_task
+
+- name: Install lazygit
+  become: true
+  command: sudo install lazygit /usr/local/bin
+  args:
+    chdir: /tmp
+  tags: *tags_for_lazygit_task
