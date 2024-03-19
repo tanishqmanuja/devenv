@@ -1,11 +1,17 @@
 # Development Environment
 
-- OS: Ubuntu
+Ansible playbook to setup my WSL2 bases Ubuntu workspace.
 
-## Fresh Setup
+### Bootstrap
 
 ```sh
-ansible-playbook -t core,dotfiles --vault-password-file ~/vault.key local.yaml
+curl -fsSL "https://raw.githubusercontent.com/tanishqmanuja/devenv/main/bootstrap" | bash 
+```
+
+### Run Playbook
+
+```sh
+ansible-playbook -t core,dotfiles --ask-become-pass --vault-password-file ~/vault.key local.yaml
 ```
 
 ### Encrypt .ssh files
