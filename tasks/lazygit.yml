@@ -18,7 +18,7 @@
   tags: *tags_for_lazygit_task
 
 - name: Download lazygit tarball
-  shell: curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_{{ lazygit_version.stdout }}_Linux_x86_64.tar.gz"
+  shell: curl -Lo /tmp/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_{{ lazygit_version.stdout }}_Linux_x86_64.tar.gz"
   tags: *tags_for_lazygit_task
 
 - name: Extract lazygit tarball
