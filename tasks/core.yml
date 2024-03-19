@@ -40,13 +40,6 @@
     - install
     - core
 
-- name: Install zoxide
-  become: true
-  shell: curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
-  tags:
-    - install
-    - core
-
 - name: Install exa
   become: true
   apt:

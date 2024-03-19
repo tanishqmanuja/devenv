@@ -17,6 +17,7 @@
     - import_tasks: tasks/zsh.yml
     - import_tasks: tasks/tmux.yml
     - import_tasks: tasks/asdf.yml
+    - import_tasks: tasks/zoxide.yml
     - import_tasks: tasks/starship.yml
     - import_tasks: tasks/dotfiles.yml
     - import_tasks: tasks/nvim.yml
