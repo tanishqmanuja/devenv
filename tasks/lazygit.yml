@@ -13,7 +13,7 @@
     - lazygit
 
 - name: Get latest lazygit version
-  shell: "curl -s 'https://api.github.com/repos/jesseduffield/lazygit/releases/latest' | jq -r '.tag_name'"
+  shell: "curl -s 'https://api.github.com/repos/jesseduffield/lazygit/releases/latest' | jq -r '.tag_name[1:]'"
   register: lazygit_version
   tags: *tags_for_lazygit_task
 
