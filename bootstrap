@@ -10,7 +10,7 @@ fi
 
 ## Install ansible if not already installed
 if ! [ -x "$(command -v ansible)" ]; then
-  echo "==== Installing ansible ====\n"
+  echo -e "==== Installing ansible ====\n"
   sudo apt-add-repository -y ppa:ansible/ansible
   sudo apt-get update -y
   sudo apt-get install -y ansible
@@ -18,7 +18,7 @@ fi
 
 ## Install neovim (latest) if not already installed
 if ! [ -x "$(command -v nvim)" ]; then
-  echo "==== Installing neovim ====\n"
+  echo -e "==== Installing neovim ====\n"
   sudo apt-add-repository -y ppa:neovim-ppa/unstable
   sudo apt-get update -y
   sudo apt-get install -y neovim
@@ -31,5 +31,5 @@ if [ ! -f ~/vault.key ]; then
 fi
 
 ## Run ansible
-echo "==== Running ansible-pull ====\n"
+echo -e "==== Running ansible-pull ====\n"
 ansible-pull -U https://github.com/tanishqmanuja/devenv.git -t $tags --ask-become-pass --vault-password-file ~/vault.key
