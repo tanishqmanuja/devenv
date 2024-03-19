@@ -5,7 +5,7 @@ set -e
 tags="$1"
 
 if [ -z $tags ]; then
-  tags="all"
+  tags="core,dotfiles"
 fi
 
 ## Install ansible if not already installed
@@ -24,4 +24,4 @@ fi
 
 ## Run ansible
 # ansible-playbook -t core,dotfiles --ask-become-pass --vault-password-file ~/vault.key local.yaml
-ansible-pull -U https://github.com/tanishqmanuja/devenv.git -t core,dotfiles --ask-become-pass --vault-password-file ~/vault.key
+ansible-pull -U https://github.com/tanishqmanuja/devenv.git -t $tags --ask-become-pass --vault-password-file ~/vault.key
