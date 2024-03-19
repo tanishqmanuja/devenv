@@ -9,5 +9,6 @@
     - zsh
 
 - name: Change shell to zsh
-  shell: chsh -s $(which zsh)
+  command: usermod --shell /bin/zsh {{ ansible_env.USER }}
+  become: true
   tags: *tags_for_zsh_task
