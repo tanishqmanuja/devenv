@@ -1,6 +1,6 @@
-# Development Environment
+![Logo](https://raw.github.com/tanishqmanuja/static/main/banners/devenv.png?maxAge=2592000)
 
-Ansible playbook to setup my WSL2 based Ubuntu workspace.
+This Ansible playbook is used to setup my WSL2 based Ubuntu workspace.
 
 ## Bootstrap
 
