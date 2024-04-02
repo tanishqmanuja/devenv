@@ -2,7 +2,7 @@
   connection: local
 
   vars:
-    config: "{{ lookup('ansible.builtin.env', 'XDG_CONFIG') }}"
+    home: "{{ lookup('ansible.builtin.env', 'HOME') }}"
 
   pre_tasks:
   - name: Update apt cache
