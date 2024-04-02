@@ -15,7 +15,7 @@
 - name: Clone asdf
   git:
     repo: https://github.com/asdf-vm/asdf.git
-    dest: "{{ lookup('env', 'HOME') }}/.asdf"
+    dest: "{{ home }}/.asdf"
   tags: *tags_for_asdf_task
 
 - name: Install prerequisites (asdf-python)
@@ -43,7 +43,11 @@
   tags: *tags_for_asdf_task
 
 - name: Install asdf plugins (nodejs. golang, python)
-  shell: source {{ lookup('env', 'HOME') }}/.asdf/asdf.sh && asdf plugin add {{ item }} && asdf install {{ item }} latest && asdf global {{ item }} $(asdf latest {{ item }})
+  shell: |
+    source {{ home }}/.asdf/asdf.sh
+    asdf plugin add {{ item }}
+    asdf install {{ item }} latest
+    asdf global {{ item }} $(asdf latest {{ item }})
   args:
     executable: /bin/bash
   with_items:

@@ -2,7 +2,7 @@
 
 - name: Ensure .ssh directory exists
   file:
-    path: .ssh
+    path: "{{ home }}/.ssh"
     state: directory
     mode: 0700
   tags: &tags_for_ssh_task
@@ -13,6 +13,6 @@
 - name: Install ssh keys
   copy:
     src: .ssh/
-    dest: "{{ lookup('env', 'HOME') }}/.ssh"
+    dest: "{{ home }}/.ssh"
     mode: 0600
   tags: *tags_for_ssh_task

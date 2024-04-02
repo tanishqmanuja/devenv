@@ -14,5 +14,5 @@
   become: true
   git:
     repo: https://github.com/tmux-plugins/tpm
-    dest: "{{ lookup('env', 'HOME') }}/.tmux/plugins/tpm"
+    dest: "{{ home }}/.tmux/plugins/tpm"
   tags: *tags_for_tmux_task

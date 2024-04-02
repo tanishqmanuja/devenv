@@ -1,6 +1,9 @@
 - hosts: localhost
   connection: local
 
+  vars:
+    config: "{{ lookup('ansible.builtin.env', 'XDG_CONFIG') }}"
+
   pre_tasks:
   - name: Update apt cache
     become: true
